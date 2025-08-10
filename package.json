@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "2.x",
+    "@vercel/node": "^5.3.11",
+    "node-fetch": "^3.3.2",
     "react": "18.x",
     "react-dom": "18.x"
   },
