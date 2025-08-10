@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase } from "./supabase";
 
 export default function Balance({ userId }:{userId?:number}){
   const [stars, setStars] = useState<number>(0);
