@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
+import Modal from "./Modal";
 
 export default function TaskCard({ task, tgUser, onChanged }:{ task:any; tgUser:{id:number, username?:string}; onChanged:()=>void; }){
   const [open, setOpen] = useState(false);
