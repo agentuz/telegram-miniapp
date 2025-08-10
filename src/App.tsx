@@ -3,6 +3,8 @@ import { supabase } from './lib/supabase';
 import Balance from './components/Balance';
 import TaskCard from './components/TaskCard';
 import BottomNav from './components/BottomNav';
+console.log("App component loaded");
+
 
 declare global { interface Window { Telegram:any } }
 
@@ -11,13 +13,13 @@ type TGUser = { id:number; username?:string; first_name?:string; };
 export default function App(){
   const [user, setUser] = useState<TGUser | null>(null);
   const [tasks, setTasks] = useState<any[]>([]);
-  const tg = useMemo(() => window.Telegram?.WebApp, []);
+  const tg = useMemo(() => window?.Telegram?.WebApp || {}, []);
+
 
   useEffect(() => {
     tg?.ready(); tg?.expand();
-    const u = tg?.initDataUnsafe?.user;
-    if (u) setUser({ id: u.id, username: u.username, first_name: u.first_name });
-  }, []);
+    setUser({ id: 1, username: "testuser", first_name: "Test" });
+
 
   useEffect(() => {
     if (!user) return;
