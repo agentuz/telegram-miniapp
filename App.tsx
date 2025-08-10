@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { supabase } from './lib/supabase';
+import { supabase } from "./supabase";
 import Balance from './components/Balance';
 import TaskCard from './components/TaskCard';
 import BottomNav from './components/BottomNav';
