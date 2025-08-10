@@ -107,6 +107,29 @@ export default function App() {
     <div className="min-h-screen bg-[#0b0d0c] text-white">
       {tab === 'home' ? Home : <Profile username={username} userId={userId} />}
       <BottomNav tab={tab} setTab={setTab} />
-    </div>
+    </div> 
+    {/* Offers */}
+<h2 className="text-lg font-semibold mb-2">Offers</h2>
+{tasks
+  .filter(t => t.status === 'active' || t.status === 'in_progress')
+  .map(t => (
+    <TaskCard
+      key={t.id}
+      task={t}
+      onStart={startTask}
+      onCompleteClick={openComplete}
+    />
+  ))}
+
+/*  <<< ДОБАВЬ ЭТО: модалка подтверждения  >>> */
+{completeFor && (
+  <CompleteTask
+    open
+    onClose={() => setCompleteFor(null)}
+    onSubmit={(proof) => submitProof(proof)}
+  />
+)}
+
+    
   );
 }
