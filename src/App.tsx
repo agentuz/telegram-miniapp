@@ -44,16 +44,21 @@ export default function App() {
   useEffect(() => { save(STORE, tasks); }, [tasks]);
 
   const startTask = (id: string) => {
-    // отмечаем как in_progress
-    setTasks(prev => prev.map(t => t.id === id ? { ...t, status:'in_progress' } : t));
-  };
+  console.log('[startTask] id =', id);
+  setTasks(prev => prev.map(t => t.id === id ? { ...t, status: 'in_progress' } : t));
+};
 
-  const openComplete = (id: string) => setCompleteFor(id);
+const openComplete = (id: string) => {
+  console.log('[openComplete] id =', id);
+  setCompleteFor(id);
+};
 
-  const submitProof = (proof: { text?: string; screenshot?: string }) => {
-    if (!completeFor) return;
-    // Здесь позже: отправка в бот/бэк
-    console.log('proof:', completeFor, proof);
+const submitProof = (proof: { text?: string; screenshot?: string }) => {
+  console.log('[submitProof] completeFor =', completeFor, 'proof =', proof);
+  if (!completeFor) return;
+  setTasks(prev => prev.map(t => t.id === completeFor ? { ...t, status: 'in_review' } : t));
+  setCompleteFor(null);
+};
 
     // переводим в "in_review"
     setTasks(prev => prev.map(t => t.id === completeFor ? ({ ...t, status:'in_review' }) : t));
@@ -121,7 +126,7 @@ export default function App() {
     />
   ))}
 
-/*  <<< ДОБАВЬ ЭТО: модалка подтверждения  >>> */
+{/* модалка подтверждения */}
 {completeFor && (
   <CompleteTask
     open
